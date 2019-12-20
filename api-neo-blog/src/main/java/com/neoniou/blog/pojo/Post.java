@@ -1,7 +1,7 @@
 package com.neoniou.blog.pojo;
 
-import tk.mybatis.mapper.annotation.KeySql;
-
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -12,21 +12,22 @@ import javax.persistence.Table;
 public class Post {
 
     @Id
-    @KeySql(useGeneratedKeys = true)
-    private int postId;
+    @Column(name = "post_id")
+    @GeneratedValue(generator="JDBC")
+    private Integer postId;
     private String postAuthor;
     private String postDate;
     private String postTitle;
     private String postContent;
     private String postExcerpt;
-    private int postStatus;
-    private int commentStatus;
+    private Integer postStatus;
+    private Integer commentStatus;
 
-    public int getPostId() {
+    public Integer getPostId() {
         return postId;
     }
 
-    public void setPostId(int postId) {
+    public void setPostId(Integer postId) {
         this.postId = postId;
     }
 
@@ -70,19 +71,19 @@ public class Post {
         this.postExcerpt = postExcerpt;
     }
 
-    public int getPostStatus() {
+    public Integer getPostStatus() {
         return postStatus;
     }
 
-    public void setPostStatus(int postStatus) {
+    public void setPostStatus(Integer postStatus) {
         this.postStatus = postStatus;
     }
 
-    public int getCommentStatus() {
+    public Integer getCommentStatus() {
         return commentStatus;
     }
 
-    public void setCommentStatus(int commentStatus) {
+    public void setCommentStatus(Integer commentStatus) {
         this.commentStatus = commentStatus;
     }
 

@@ -6,7 +6,7 @@ package com.neoniou.blog.exception;
 public enum ExceptionEnum {
 
     /**
-     *
+     * Exception enums
      */
     INIT_DATABASE_FAIL(500, "初始化数据库失败！"),
     ;

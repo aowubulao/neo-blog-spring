@@ -8,9 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- * 初始化博客数据库
- * Init blog database
- *
  * @author neo.zzj
  */
 @Service

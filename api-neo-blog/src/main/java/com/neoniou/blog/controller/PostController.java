@@ -59,4 +59,14 @@ public class PostController {
     public ResponseEntity<List<Post>> searchPostByWords(@PathVariable("words") String words) {
         return ResponseEntity.ok().body(postService.searchPostByWords(words));
     }
+
+    /**
+     * 根据 category_name 查找该分类下的文章
+     * @param categoryName category_name
+     * @return Posts
+     */
+    @GetMapping("/posts/category/{categoryName}")
+    public ResponseEntity<List<Post>> queryPostByCategoryName(@PathVariable("categoryName") String categoryName) {
+        return ResponseEntity.ok().body(postService.queryPostByCategoryName(categoryName));
+    }
 }

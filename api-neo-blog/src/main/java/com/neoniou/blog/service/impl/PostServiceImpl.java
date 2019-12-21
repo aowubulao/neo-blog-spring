@@ -40,4 +40,9 @@ public class PostServiceImpl implements PostService {
     public List<Post> searchPostByWords(String words) {
         return postDao.searchPostByWords(words);
     }
+
+    @Override
+    public List<Post> queryPostByCategoryName(String categoryName) {
+        return postDao.queryPostByCategoryName(categoryName);
+    }
 }

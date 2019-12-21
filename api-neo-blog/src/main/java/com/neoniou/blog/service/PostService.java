@@ -35,4 +35,11 @@ public interface PostService {
      * @return post(post_title)
      */
     List<Post> searchPostByWords(String words);
+
+    /**
+     * 根据 category_name 查找该分类下的文章
+     * @param categoryName category_name
+     * @return Posts
+     */
+    List<Post> queryPostByCategoryName(String categoryName);
 }

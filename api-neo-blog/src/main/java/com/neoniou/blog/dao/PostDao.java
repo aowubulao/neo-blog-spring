@@ -36,4 +36,12 @@ public interface PostDao extends Mapper<Post> {
             " or post_content like concat('%', #{words} '%')" +
             " or post_excerpt like concat('%', #{words} '%')")
     List<Post> searchPostByWords(String words);
+
+    /**
+     * 根据 category_name 查找该分类下的文章
+     * @param categoryName category_name
+     * @return Posts
+     */
+    @Select("select * from nb_post where post_category = #{categoryName}")
+    List<Post> queryPostByCategoryName(String categoryName);
 }

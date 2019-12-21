@@ -1,7 +1,7 @@
 package com.neoniou.blog.pojo;
 
-import tk.mybatis.mapper.annotation.KeySql;
-
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 /**
@@ -10,7 +10,8 @@ import javax.persistence.Id;
 public class User {
 
     @Id
-    @KeySql(useGeneratedKeys = true)
+    @Column(name = "user_id")
+    @GeneratedValue(generator="JDBC")
     private int userId;
     private String username;
     private String userEmail;
@@ -82,19 +83,5 @@ public class User {
 
     public void setBlogDescription(String blogDescription) {
         this.blogDescription = blogDescription;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "userId=" + userId +
-                ", username='" + username + '\'' +
-                ", userEmail='" + userEmail + '\'' +
-                ", password='" + password + '\'' +
-                ", url='" + url + '\'' +
-                ", blogName='" + blogName + '\'' +
-                ", blogSubName='" + blogSubName + '\'' +
-                ", blogDescription='" + blogDescription + '\'' +
-                '}';
     }
 }

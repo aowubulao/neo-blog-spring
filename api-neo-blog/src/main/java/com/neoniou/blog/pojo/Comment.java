@@ -2,6 +2,8 @@ package com.neoniou.blog.pojo;
 
 import tk.mybatis.mapper.annotation.KeySql;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 /**
@@ -10,28 +12,29 @@ import javax.persistence.Id;
 public class Comment {
 
     @Id
-    @KeySql(useGeneratedKeys = true)
-    private int commentId;
-    private int postId;
+    @Column(name = "comment_id")
+    @GeneratedValue(generator="JDBC")
+    private Integer commentId;
+    private Integer postId;
     private String commentContent;
     private String commentEmail;
     private String commentIp;
     private String commentDate;
-    private int commentStatus;
+    private Integer commentStatus;
 
-    public int getCommentId() {
+    public Integer getCommentId() {
         return commentId;
     }
 
-    public void setCommentId(int commentId) {
+    public void setCommentId(Integer commentId) {
         this.commentId = commentId;
     }
 
-    public int getPostId() {
+    public Integer getPostId() {
         return postId;
     }
 
-    public void setPostId(int postId) {
+    public void setPostId(Integer postId) {
         this.postId = postId;
     }
 
@@ -67,24 +70,11 @@ public class Comment {
         this.commentDate = commentDate;
     }
 
-    public int getCommentStatus() {
+    public Integer getCommentStatus() {
         return commentStatus;
     }
 
-    public void setCommentStatus(int commentStatus) {
+    public void setCommentStatus(Integer commentStatus) {
         this.commentStatus = commentStatus;
-    }
-
-    @Override
-    public String toString() {
-        return "Comment{" +
-                "commentId=" + commentId +
-                ", postId=" + postId +
-                ", commentContent='" + commentContent + '\'' +
-                ", commentEmail='" + commentEmail + '\'' +
-                ", commentIp='" + commentIp + '\'' +
-                ", commentDate='" + commentDate + '\'' +
-                ", commentStatus=" + commentStatus +
-                '}';
     }
 }

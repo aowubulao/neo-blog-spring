@@ -22,6 +22,7 @@ public class Post {
     private String postExcerpt;
     private Integer postStatus;
     private Integer commentStatus;
+    private String postCategory;
 
     public Integer getPostId() {
         return postId;
@@ -87,17 +88,11 @@ public class Post {
         this.commentStatus = commentStatus;
     }
 
-    @Override
-    public String toString() {
-        return "Post{" +
-                "postId=" + postId +
-                ", postAuthor='" + postAuthor + '\'' +
-                ", postDate='" + postDate + '\'' +
-                ", postTitle='" + postTitle + '\'' +
-                ", postContent='" + postContent + '\'' +
-                ", postExcerpt='" + postExcerpt + '\'' +
-                ", postStatus=" + postStatus +
-                ", commentStatus=" + commentStatus +
-                '}';
+    public String getPostCategory() {
+        return postCategory;
+    }
+
+    public void setPostCategory(String postCategory) {
+        this.postCategory = postCategory;
     }
 }

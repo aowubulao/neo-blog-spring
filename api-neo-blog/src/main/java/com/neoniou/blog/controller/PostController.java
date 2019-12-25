@@ -61,12 +61,25 @@ public class PostController {
     }
 
     /**
+     * 根据 category_name 查找该分类下的文章的总页数
+     * 一页5条，查询一共多少页
+     * @param categoryName category_name
+     * @return total pages
+     */
+    @GetMapping("/posts/category/total/{categoryName}")
+    public ResponseEntity<Integer> queryCategoryPostPage(@PathVariable("categoryName") String categoryName) {
+        return ResponseEntity.ok().body(postService.queryCategoryPostPage(categoryName));
+    }
+
+    /**
      * 根据 category_name 查找该分类下的文章
      * @param categoryName category_name
+     * @param page 当前page
      * @return Posts
      */
-    @GetMapping("/posts/category/{categoryName}")
-    public ResponseEntity<List<Post>> queryPostByCategoryName(@PathVariable("categoryName") String categoryName) {
-        return ResponseEntity.ok().body(postService.queryPostByCategoryName(categoryName));
+    @GetMapping("/posts/category/{categoryName}/{page}")
+    public ResponseEntity<List<Post>> queryPostByCategoryName(@PathVariable("categoryName") String categoryName,
+                                                              @PathVariable("page") Integer page) {
+        return ResponseEntity.ok().body(postService.queryPostByCategoryName(categoryName, page));
     }
 }

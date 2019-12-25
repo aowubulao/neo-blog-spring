@@ -12,7 +12,7 @@ public class User {
     @Id
     @Column(name = "user_id")
     @GeneratedValue(generator="JDBC")
-    private int userId;
+    private Integer userId;
     private String username;
     private String userEmail;
     private String password;
@@ -21,11 +21,11 @@ public class User {
     private String blogSubName;
     private String blogDescription;
 
-    public int getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 

@@ -28,6 +28,9 @@ public class PostServiceImpl implements PostService {
     @Override
     public Integer queryPostPage() {
         Integer count = postDao.queryPostCount();
+        if (count < 5) {
+            return 1;
+        }
         return count / 5;
     }
 
@@ -42,7 +45,18 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public List<Post> queryPostByCategoryName(String categoryName) {
+    public List<Post> queryPostByCategoryName(String categoryName, Integer page) {
+        //分页
+        PageHelper.startPage(page, 5);
         return postDao.queryPostByCategoryName(categoryName);
+    }
+
+    @Override
+    public Integer queryCategoryPostPage(String categoryName) {
+        Integer count = postDao.queryCategoryPostCount(categoryName);
+        if (count < 5) {
+            return 1;
+        }
+        return count / 5;
     }
 }

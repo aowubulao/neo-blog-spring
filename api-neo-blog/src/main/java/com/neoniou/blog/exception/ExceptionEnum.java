@@ -9,6 +9,7 @@ public enum ExceptionEnum {
      * Exception enums
      */
     INIT_DATABASE_FAIL(500, "初始化数据库失败！"),
+    CATEGORY_REPEAT(400, "分类已存在！"),
     ;
     private int statusCode;
     private String message;

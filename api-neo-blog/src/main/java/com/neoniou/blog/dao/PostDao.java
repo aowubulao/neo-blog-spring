@@ -21,10 +21,10 @@ public interface PostDao extends Mapper<Post> {
     Integer queryPostCount();
 
     /**
-     * 根据文章发布时间升序查询
+     * 根据文章发布时间降序查询
      * @return posts
      */
-    @Select("select * from nb_post order by post_date asc")
+    @Select("select * from nb_post order by post_date desc")
     List<Post> selectAllOrderByDate();
 
     /**
@@ -38,10 +38,21 @@ public interface PostDao extends Mapper<Post> {
     List<Post> searchPostByWords(String words);
 
     /**
+     * 根据 category_name 查找该分类下的文章的总页数
+     * 一页5条，查询一共多少页
+     * @param categoryName category_name
+     * @return total pages
+     */
+    @Select("select count(post_id) from nb_post where post_category = #{categoryName}")
+    Integer queryCategoryPostCount(String categoryName);
+
+    /**
      * 根据 category_name 查找该分类下的文章
      * @param categoryName category_name
      * @return Posts
      */
     @Select("select * from nb_post where post_category = #{categoryName}")
     List<Post> queryPostByCategoryName(String categoryName);
+
+
 }

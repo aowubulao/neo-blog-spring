@@ -37,9 +37,19 @@ public interface PostService {
     List<Post> searchPostByWords(String words);
 
     /**
+     * 根据 category_name 查找该分类下的文章的总页数
+     * 一页5条，查询一共多少页
+     * @param categoryName category_name
+     * @return total pages
+     */
+    Integer queryCategoryPostPage(String categoryName);
+
+    /**
      * 根据 category_name 查找该分类下的文章
      * @param categoryName category_name
+     * @param page 当前page
      * @return Posts
      */
-    List<Post> queryPostByCategoryName(String categoryName);
+    List<Post> queryPostByCategoryName(String categoryName, Integer page);
+
 }

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author neo.zzj
  */
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping("/api/blog/user")
 public class UserController {
 
     @Autowired

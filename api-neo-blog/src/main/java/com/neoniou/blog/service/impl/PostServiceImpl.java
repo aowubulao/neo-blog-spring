@@ -31,7 +31,8 @@ public class PostServiceImpl implements PostService {
         if (count < 5) {
             return 1;
         }
-        return count / 5;
+        int end = count % 5;
+        return (count / 5) + end;
     }
 
     @Override
@@ -57,6 +58,7 @@ public class PostServiceImpl implements PostService {
         if (count < 5) {
             return 1;
         }
-        return count / 5;
+        int end = count % 5;
+        return (count / 5) + end;
     }
 }

@@ -15,7 +15,7 @@ import java.util.List;
  * @author neo.zzj
  */
 @RestController
-@RequestMapping("/api/category")
+@RequestMapping("/api/blog/category")
 public class CategoryController {
 
     @Autowired

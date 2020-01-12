@@ -51,7 +51,7 @@ public interface PostDao extends Mapper<Post> {
      * @param categoryName category_name
      * @return Posts
      */
-    @Select("select * from nb_post where post_category = #{categoryName}")
+    @Select("select * from nb_post where post_category = #{categoryName} order by post_date desc")
     List<Post> queryPostByCategoryName(String categoryName);
 
 

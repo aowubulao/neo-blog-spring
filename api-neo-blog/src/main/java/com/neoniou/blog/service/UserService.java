@@ -12,4 +12,11 @@ public interface UserService {
      * @return User info
      */
     User getUserInfo();
+
+    /**
+     * 获取 blog 相关信息
+     *
+     * @return blog name, subName, description
+     */
+    User getBlogInfo();
 }

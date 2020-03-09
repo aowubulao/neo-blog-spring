@@ -4,10 +4,7 @@ import com.neoniou.blog.pojo.Post;
 import com.neoniou.blog.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -15,7 +12,7 @@ import java.util.List;
  * @author neo.zzj
  */
 @RestController
-@RequestMapping("/api/blog")
+@RequestMapping("/blog")
 public class PostController {
 
     @Autowired
@@ -81,5 +78,15 @@ public class PostController {
     public ResponseEntity<List<Post>> queryPostByCategoryName(@PathVariable("categoryName") String categoryName,
                                                               @PathVariable("page") Integer page) {
         return ResponseEntity.ok().body(postService.queryPostByCategoryName(categoryName, page));
+    }
+
+    /**
+     * 添加新文章
+     * @param post Post
+     */
+    @PostMapping("/post")
+    public ResponseEntity<Void> addPost(Post post) {
+        postService.addPost(post);
+        return ResponseEntity.ok().build();
     }
 }

@@ -12,14 +12,15 @@ public class Post {
     @Column(name = "post_id")
     @GeneratedValue(generator="JDBC")
     private Integer postId;
-    private String postAuthor;
-    private String postDate;
-    private String postTitle;
-    private String postContent;
-    private String postExcerpt;
+    private String  postAuthor;
+    private String  postDate;
+    private String  postTitle;
+    private String  postContent;
+    private String  postExcerpt;
     private Integer postStatus;
     private Integer commentStatus;
-    private String postCategory;
+    private String  postCategory;
+    private String  postImgUrl;
 
     public Integer getPostId() {
         return postId;
@@ -91,5 +92,13 @@ public class Post {
 
     public void setPostCategory(String postCategory) {
         this.postCategory = postCategory;
+    }
+
+    public String getPostImgUrl() {
+        return postImgUrl;
+    }
+
+    public void setPostImgUrl(String postImgUrl) {
+        this.postImgUrl = postImgUrl;
     }
 }

@@ -32,7 +32,7 @@ public interface PostDao extends Mapper<Post> {
      * @param words 搜索信息
      * @return post(post_title)
      */
-    @Select("select post_title from nb_post where post_title like concat('%', #{words} '%') " +
+    @Select("select post_id, post_title from nb_post where post_title like concat('%', #{words} '%') " +
             " or post_content like concat('%', #{words} '%')" +
             " or post_excerpt like concat('%', #{words} '%')")
     List<Post> searchPostByWords(String words);

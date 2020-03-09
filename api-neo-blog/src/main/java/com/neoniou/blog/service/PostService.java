@@ -52,4 +52,9 @@ public interface PostService {
      */
     List<Post> queryPostByCategoryName(String categoryName, Integer page);
 
+    /**
+     * 添加新文章
+     * @param post Post
+     */
+    void addPost(Post post);
 }

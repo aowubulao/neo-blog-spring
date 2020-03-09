@@ -2,10 +2,14 @@ package com.neoniou.blog.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.neoniou.blog.dao.PostDao;
+import com.neoniou.blog.exception.ExceptionEnum;
+import com.neoniou.blog.exception.NeoBlogException;
 import com.neoniou.blog.pojo.Post;
 import com.neoniou.blog.service.PostService;
+import com.neoniou.blog.util.MarkDownUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -50,6 +54,17 @@ public class PostServiceImpl implements PostService {
         //分页
         PageHelper.startPage(page, 5);
         return postDao.queryPostByCategoryName(categoryName);
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void addPost(Post post) {
+        try {
+            postDao.insert(post);
+        } catch (Exception e) {
+            throw new NeoBlogException(ExceptionEnum.ADD_POST_FAIL);
+        }
+
     }
 
     @Override

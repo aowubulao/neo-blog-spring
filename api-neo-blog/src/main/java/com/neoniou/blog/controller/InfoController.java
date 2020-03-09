@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
  * @author neo.zzj
  */
 @RestController
-@RequestMapping("/api/blog/user")
-public class UserController {
+@RequestMapping("/blog/info")
+public class InfoController {
 
     @Autowired
     private UserService userService;
@@ -22,8 +22,19 @@ public class UserController {
      * 获取 blog 用户信息
      * @return User info
      */
-    @GetMapping
+    @GetMapping("/user")
     public ResponseEntity<User> getUserInfo() {
         return ResponseEntity.ok().body(userService.getUserInfo());
     }
+
+    /**
+     * 获取 blog 相关信息
+     *
+     * @return blog name, subName, description
+     */
+    @GetMapping
+    public ResponseEntity<User> getBlogInfo() {
+        return ResponseEntity.ok().body(userService.getBlogInfo());
+    }
+
 }

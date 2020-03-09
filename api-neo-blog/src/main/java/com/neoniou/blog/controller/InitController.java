@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletRequest;
  * @author neo.zzj
  */
 @RestController
-@RequestMapping("/api/blog/database")
+@RequestMapping("/blog/database")
 public class InitController {
 
     @Autowired

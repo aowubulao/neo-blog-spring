@@ -17,4 +17,12 @@ public interface UserDao extends Mapper<User> {
      */
     @Select("select username, user_email, url, blog_name, blog_sub_name, blog_description from nb_user where user_id = 1")
     User getUserInfo();
+
+    /**
+     * 获取 blog 相关信息
+     *
+     * @return blog name, subName, description
+     */
+    @Select("select url, blog_name, blog_sub_name, blog_description from nb_user where user_id = 1")
+    User getBlogInfo();
 }

@@ -15,7 +15,7 @@ import java.util.List;
  * @author neo.zzj
  */
 @RestController
-@RequestMapping("/api/blog/comment")
+@RequestMapping("/blog/comment")
 public class CommentController {
 
     @Autowired

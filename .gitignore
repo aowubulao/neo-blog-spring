@@ -1,10 +1,13 @@
 HELP.md
 target/
-application.yaml
 target
 .mvn
 mvnw
 mvnw.cmd
+
+### Properties ###
+application.yaml
+redis.properties
 
 ### STS ###
 .apt_generated

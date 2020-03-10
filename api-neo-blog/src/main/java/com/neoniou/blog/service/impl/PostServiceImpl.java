@@ -6,7 +6,6 @@ import com.neoniou.blog.exception.ExceptionEnum;
 import com.neoniou.blog.exception.NeoBlogException;
 import com.neoniou.blog.pojo.Post;
 import com.neoniou.blog.service.PostService;
-import com.neoniou.blog.util.MarkDownUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

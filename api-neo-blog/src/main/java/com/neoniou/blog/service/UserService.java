@@ -19,4 +19,13 @@ public interface UserService {
      * @return blog name, subName, description
      */
     User getBlogInfo();
+
+    /**
+     * 认证用户，如果成功，将 token储存
+     *
+     * @param user User
+     * @param token token
+     * @return true or false
+     */
+    Boolean authUser(User user, String token);
 }

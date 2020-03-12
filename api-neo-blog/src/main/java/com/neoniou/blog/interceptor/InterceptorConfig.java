@@ -17,6 +17,7 @@ public class InterceptorConfig implements WebMvcConfigurer {
         authInterceptor.addPathPatterns("/blog/auth/**");
 
         InterceptorRegistration tokenInterceptor = registry.addInterceptor(new TokenInterceptor());
-        tokenInterceptor.addPathPatterns("/**");
+        tokenInterceptor.addPathPatterns("/blog");
+        tokenInterceptor.addPathPatterns("/blog/");
     }
 }

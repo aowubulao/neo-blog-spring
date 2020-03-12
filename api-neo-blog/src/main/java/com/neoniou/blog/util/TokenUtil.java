@@ -9,6 +9,7 @@ public class TokenUtil {
 
     private static final int TOKEN_LENGTH = 32;
     private static final String CODE_STR = "QWERTYUIOPASDFGHJKLZXCVBNM1234567890";
+    private static final String UNDEFINED = "undefined";
 
     private RedisUtil redisUtil;
 
@@ -35,7 +36,27 @@ public class TokenUtil {
         return redisUtil.isExist(token);
     }
 
+    /**
+     * 设置 Token (第一次)
+     * 过时时间为一天
+     * @param token token
+     */
     public void setToken(String token) {
-        redisUtil.setKeyWithExpire(token, "token", 60 * 60 * 24 * 3);
+        redisUtil.setKeyWithExpire(token, "token", 60 * 60 * 24);
+    }
+
+    /**
+     * Token再次被请求，过期时间再次设置为一天
+     * @param token token
+     */
+    public void extendToken(String token) {
+        redisUtil.setExpire(token, 60 * 60 * 24);
+    }
+
+    public boolean checkToken(String token) {
+        if (token == null || UNDEFINED.equals(token) || token.length() != TOKEN_LENGTH) {
+            return false;
+        }
+        return token.matches("[A-Z0-9]+");
     }
 }

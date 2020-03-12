@@ -21,7 +21,7 @@ public class TokenInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String authorization = request.getHeader("authorization");
-        if (authorization == null || "undefined".equals(authorization)) {
+        if (!tokenUtil.checkToken(authorization)) {
             response.setHeader("authorization", tokenUtil.generateToken());
         }
         return true;

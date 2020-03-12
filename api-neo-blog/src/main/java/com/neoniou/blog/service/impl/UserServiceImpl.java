@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Boolean authUser(User user, String token) {
-        if (userDao.authUser(user) == 1 && token != null) {
+        if (userDao.authUser(user) == 1 && new TokenUtil().checkToken(token)) {
             new TokenUtil().setToken(token);
             return true;
         } else {

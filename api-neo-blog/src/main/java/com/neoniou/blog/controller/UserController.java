@@ -16,6 +16,11 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @GetMapping
+    public ResponseEntity<Void> helloServer() {
+        return ResponseEntity.ok().build();
+    }
+
     /**
      * 获取 blog 相关信息
      *

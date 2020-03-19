@@ -85,7 +85,8 @@ public class PostController {
      * @param post Post
      */
     @PostMapping("/post")
-    public ResponseEntity<Void> addPost(Post post) {
+    public ResponseEntity<Void> addPost(Post post,
+                                        @RequestParam("token") String token) {
         postService.addPost(post);
         return ResponseEntity.ok().build();
     }

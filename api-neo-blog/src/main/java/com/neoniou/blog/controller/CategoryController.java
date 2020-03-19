@@ -35,7 +35,8 @@ public class CategoryController {
      * @param categoryName category_name
      */
     @PostMapping("{categoryName}")
-    public ResponseEntity<Void> addCategory(@PathVariable("categoryName") String categoryName) {
+    public ResponseEntity<Void> addCategory(@PathVariable("categoryName") String categoryName,
+                                            @RequestParam("token") String token) {
         if (!categoryService.isHasCategory(categoryName)) {
             categoryService.addCategory(categoryName);
         } else {
@@ -49,7 +50,8 @@ public class CategoryController {
      * @param categoryName category_name
      */
     @DeleteMapping("{categoryName}")
-    public ResponseEntity<Void> deleteCategory(@PathVariable("categoryName") String categoryName) {
+    public ResponseEntity<Void> deleteCategory(@PathVariable("categoryName") String categoryName,
+                                               @RequestParam("token") String token) {
         categoryService.deleteCategory(categoryName);
         return ResponseEntity.ok().build();
     }

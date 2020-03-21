@@ -32,6 +32,15 @@ public class TokenUtil {
         return stringBuilder.toString();
     }
 
+    public Boolean authToken(String token) {
+        if (isExists(token)) {
+            extendToken(token);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public Boolean isExists(String token) {
         return redisUtil.isExist(token);
     }

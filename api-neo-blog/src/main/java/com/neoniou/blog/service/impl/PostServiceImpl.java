@@ -75,4 +75,9 @@ public class PostServiceImpl implements PostService {
         int end = count % 5;
         return (count / 5) + end;
     }
+
+    @Override
+    public void deletePost(Integer postId) {
+
+    }
 }

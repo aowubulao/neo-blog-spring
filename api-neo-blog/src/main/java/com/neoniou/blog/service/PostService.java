@@ -57,4 +57,10 @@ public interface PostService {
      * @param post Post
      */
     void addPost(Post post);
+
+    /**
+     * 删除文章
+     * @param postId 文章 id
+     */
+    void deletePost(Integer postId);
 }

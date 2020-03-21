@@ -5,6 +5,7 @@ import com.neoniou.blog.exception.NeoBlogException;
 import com.neoniou.blog.pojo.Category;
 import com.neoniou.blog.pojo.Post;
 import com.neoniou.blog.service.CategoryService;
+import com.neoniou.blog.util.TokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,8 +19,15 @@ import java.util.List;
 @RequestMapping("/blog/category")
 public class CategoryController {
 
+    private final CategoryService categoryService;
+    private TokenUtil tokenUtil;
+
     @Autowired
-    private CategoryService categoryService;
+    public CategoryController(CategoryService categoryService) {
+        this.categoryService = categoryService;
+        tokenUtil = new TokenUtil();
+    }
+
 
     /**
      * 获取所有分类
@@ -37,6 +45,10 @@ public class CategoryController {
     @PostMapping("{categoryName}")
     public ResponseEntity<Void> addCategory(@PathVariable("categoryName") String categoryName,
                                             @RequestParam("token") String token) {
+        if (!tokenUtil.authToken(token)) {
+            throw new NeoBlogException(ExceptionEnum.REQUEST_FORBIDDEN);
+        }
+
         if (!categoryService.isHasCategory(categoryName)) {
             categoryService.addCategory(categoryName);
         } else {
@@ -52,6 +64,10 @@ public class CategoryController {
     @DeleteMapping("{categoryName}")
     public ResponseEntity<Void> deleteCategory(@PathVariable("categoryName") String categoryName,
                                                @RequestParam("token") String token) {
+        if (!tokenUtil.authToken(token)) {
+            throw new NeoBlogException(ExceptionEnum.REQUEST_FORBIDDEN);
+        }
+
         categoryService.deleteCategory(categoryName);
         return ResponseEntity.ok().build();
     }

@@ -1,7 +1,10 @@
 package com.neoniou.blog.controller;
 
+import com.neoniou.blog.exception.ExceptionEnum;
+import com.neoniou.blog.exception.NeoBlogException;
 import com.neoniou.blog.pojo.Post;
 import com.neoniou.blog.service.PostService;
+import com.neoniou.blog.util.TokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,8 +18,14 @@ import java.util.List;
 @RequestMapping("/blog")
 public class PostController {
 
+    private final PostService postService;
+    private TokenUtil tokenUtil;
+
     @Autowired
-    private PostService postService;
+    public PostController(PostService postService) {
+        this.postService = postService;
+        tokenUtil = new TokenUtil();
+    }
 
     /**
      * 文章。一页5条，查询一共多少页
@@ -87,7 +96,26 @@ public class PostController {
     @PostMapping("/post")
     public ResponseEntity<Void> addPost(Post post,
                                         @RequestParam("token") String token) {
+        if (!tokenUtil.authToken(token)) {
+            throw new NeoBlogException(ExceptionEnum.REQUEST_FORBIDDEN);
+        }
         postService.addPost(post);
+        return ResponseEntity.ok().build();
+    }
+
+    /**
+     * 删除文章
+     * @param postId 文章 id
+     * @param token token
+     */
+    @DeleteMapping("/post/{postId}")
+    public ResponseEntity<Void> deletePost(@PathVariable("postId") Integer postId,
+                                           @RequestParam("token") String token) {
+        if (!tokenUtil.authToken(token)) {
+            throw new NeoBlogException(ExceptionEnum.REQUEST_FORBIDDEN);
+        }
+
+        postService.deletePost(postId);
         return ResponseEntity.ok().build();
     }
 }

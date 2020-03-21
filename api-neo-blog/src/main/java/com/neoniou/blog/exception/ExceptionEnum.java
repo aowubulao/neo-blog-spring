@@ -11,6 +11,7 @@ public enum ExceptionEnum {
     INIT_DATABASE_FAIL(500, "初始化数据库失败！"),
     CATEGORY_REPEAT(400, "分类已存在！"),
     ADD_POST_FAIL(408, "文章新增失败！"),
+    REQUEST_FORBIDDEN(403, "Request Forbidden"),
     ;
     private int statusCode;
     private String message;

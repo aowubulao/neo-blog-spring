@@ -31,11 +31,11 @@ public class PostServiceImpl implements PostService {
     @Override
     public Integer queryPostPage() {
         Integer count = postDao.queryPostCount();
+        System.out.println(count);
         if (count < 5) {
             return 1;
         }
-        int end = count % 5;
-        return (count / 5) + end;
+        return count % 5 == 0 ? count / 5 : (count / 5) + 1;
     }
 
     @Override

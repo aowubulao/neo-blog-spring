@@ -9,6 +9,7 @@
     <version>1.0.0</version>
     <modules>
         <module>api-neo-blog</module>
+        <module>neo-auth-model</module>
     </modules>
     <packaging>pom</packaging>
 

@@ -31,7 +31,6 @@ public class PostServiceImpl implements PostService {
     @Override
     public Integer queryPostPage() {
         Integer count = postDao.queryPostCount();
-        System.out.println(count);
         if (count < 5) {
             return 1;
         }

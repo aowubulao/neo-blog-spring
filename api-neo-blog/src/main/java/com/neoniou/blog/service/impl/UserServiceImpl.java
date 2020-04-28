@@ -1,5 +1,6 @@
 package com.neoniou.blog.service.impl;
 
+import com.neoniou.blog.common.ILocalCache;
 import com.neoniou.blog.dao.UserDao;
 import com.neoniou.blog.pojo.User;
 import com.neoniou.blog.service.UserService;
@@ -23,7 +24,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getBlogInfo() {
-        return userDao.getBlogInfo();
+        if (ILocalCache.isExist(ILocalCache.BLOG_INFO)) {
+            return (User) ILocalCache.get(ILocalCache.BLOG_INFO);
+        } else {
+            User blogInfo = userDao.getBlogInfo();
+            ILocalCache.add(ILocalCache.BLOG_INFO, blogInfo);
+            return blogInfo;
+        }
     }
 
     @Override

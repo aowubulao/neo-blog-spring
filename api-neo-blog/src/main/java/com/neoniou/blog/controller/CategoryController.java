@@ -1,9 +1,9 @@
 package com.neoniou.blog.controller;
 
+import com.neoniou.blog.common.ILocalCache;
 import com.neoniou.blog.exception.ExceptionEnum;
 import com.neoniou.blog.exception.NeoBlogException;
 import com.neoniou.blog.pojo.Category;
-import com.neoniou.blog.pojo.Post;
 import com.neoniou.blog.service.CategoryService;
 import com.neoniou.blog.util.TokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +28,6 @@ public class CategoryController {
         tokenUtil = new TokenUtil();
     }
 
-
     /**
      * 获取所有分类
      * @return Categories
@@ -51,6 +50,7 @@ public class CategoryController {
 
         if (!categoryService.isHasCategory(categoryName)) {
             categoryService.addCategory(categoryName);
+            ILocalCache.remove(ILocalCache.CATEGORIES);
         } else {
             throw new NeoBlogException(ExceptionEnum.CATEGORY_REPEAT);
         }
@@ -69,6 +69,7 @@ public class CategoryController {
         }
 
         categoryService.deleteCategory(categoryName);
+        ILocalCache.remove(ILocalCache.CATEGORIES);
         return ResponseEntity.ok().build();
     }
 }
